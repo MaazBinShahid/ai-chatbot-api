@@ -1,0 +1,59 @@
+/* assets/chat-widget.css */
+#ai-chat-root { z-index: 2147483647; }
+#ai-chat-widget { position: fixed; bottom: 20px; right: 20px; font-family: Arial, sans-serif; }
+
+/* Toggle button */
+.ai-chat-toggle {
+  background: #BC9748;
+  color: #fff;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 18px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+}
+
+/* Window */
+.ai-chat-window {
+  width: 320px;
+  height: 420px;
+  display:flex;
+  flex-direction:column;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  overflow: hidden;
+}
+
+/* Header */
+.ai-chat-header {
+  background: #222;
+  color: #fff;
+  padding: 12px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+/* Messages */
+.ai-chat-messages {
+  padding: 12px;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  background: linear-gradient(#fff,#f7f7f7);
+}
+
+/* Message bubbles */
+.ai-chat-msg { margin-bottom: 8px; display:flex; }
+.ai-chat-bubble { max-width: 78%; padding: 8px 10px; border-radius: 12px; line-height:1.35; }
+.ai-chat-user { justify-content: flex-end; }
+.ai-chat-user .ai-chat-bubble { background: #BC9748; color: #fff; border-bottom-right-radius: 4px; }
+.ai-chat-bot .ai-chat-bubble { background: #eee; color: #222; border-bottom-left-radius: 4px; }
+
+/* Input row */
+.ai-chat-input-row { display:flex; padding: 8px; border-top: 1px solid #eee; }
+.ai-chat-input-row input { flex:1; padding:8px; border:1px solid #ddd; border-radius:4px; margin-right:6px; }
+.ai-chat-input-row button { background:#222;color:#fff;border:none;padding:8px 10px;border-radius:4px;cursor:pointer; }
+
+/* Typing indicator styling (optional) */
+.ai-typing .ai-chat-bubble { opacity:0.85; font-style:italic; }
