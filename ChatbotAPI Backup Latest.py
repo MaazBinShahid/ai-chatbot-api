@@ -53,7 +53,7 @@ class ChatQuery(BaseModel):
 # Session memory
 # ---------------------------
 sessions = {}
-MAX_HISTORY = 20  # Limit chat history to last 10 messages
+MAX_HISTORY = 10  # Limit chat history to last 10 messages
 
 
 
@@ -67,7 +67,7 @@ def is_booking_complete(session: dict) -> bool:
     # require at least vehicle make_model
     required_vehicle = bool(vehicle.get("make_model"))
     # require booking address and time
-    required_booking = all(booking.get(k) for k in ["time"])
+    required_booking = all(booking.get(k) for k in ["address", "time"])
 
     return required_contact and required_vehicle and required_booking
 
@@ -92,7 +92,7 @@ def send_booking_email(contact, vehicle, booking):
         Package: {vehicle.get('package', 'Not specified')}
 
         Booking Details:
-        
+        Address: {booking.get('address')}
         Time: {booking.get('time')}
         """
 
@@ -113,6 +113,21 @@ def send_booking_email(contact, vehicle, booking):
             server.send_message(msg, from_addr=SMTP_USER, to_addrs=recipients)
     except Exception as e:
         print("❌ Failed to send booking email:", e)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -216,13 +231,8 @@ def extract_with_gpt(user_message: str, session: dict):
     try:
         data = json.loads(parsed.content)
         # Merge into session
-        
-        if data.get("vehicle"):
-            print("this is the vehicle information")
-            print(session["vehicle_info"])
+        if data.get("vehicle") and not session.get("vehicle_info"):
             session["vehicle_info"] = {"make_model": data["vehicle"], "size": "Unknown"}
-            
-
         if data.get("package"):
             if not session.get("vehicle_info"):
                 session["vehicle_info"] = {"make_model": None, "size": "Unknown"}
@@ -248,7 +258,6 @@ def extract_with_gpt(user_message: str, session: dict):
         print("❌ JSON parse error:", e)
 
     # Debug print
-
     print("📌 Extracted so far:", {
     "name": session["contact_info"].get("name"),
     "email": session["contact_info"].get("email"),
@@ -319,9 +328,9 @@ async def chat(data: ChatQuery):
         session["chat_history"] = chat_history
 
     # Detect vehicle info dynamically
-    # vehicle_info = detect_vehicle_info(question)
-    # if vehicle_info:
-    #     session["vehicle_info"] = vehicle_info
+    vehicle_info = detect_vehicle_info(question)
+    if vehicle_info:
+        session["vehicle_info"] = vehicle_info
 
 # ----- use GPT to extract structured info -----
     extract_with_gpt(question, session)
