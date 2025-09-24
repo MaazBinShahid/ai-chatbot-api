@@ -15,8 +15,8 @@ from email.mime.multipart import MIMEMultipart
 # ---------------------------
 SMTP_SERVER = "smtp.hostinger.com"
 SMTP_PORT = 587
-SMTP_USER = "info@app.booklabb.com"
-SMTP_PASS = "Info@thestartupleads.com1"
+SMTP_USER = "community@keeneyesautodetailing.com"
+SMTP_PASS = "Keeneyesislove@"
 
 
 
