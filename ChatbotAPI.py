@@ -13,7 +13,7 @@ from email.mime.multipart import MIMEMultipart
 # ---------------------------
 # Email Notification Helper
 # ---------------------------
-SMTP_SERVER = "smtp.hostinger.com"
+SMTP_SERVER = "smtp.titan.email"
 SMTP_PORT = 587
 SMTP_USER = "community@keeneyesautodetailing.com"
 SMTP_PASS = "Keeneyesislove@"
