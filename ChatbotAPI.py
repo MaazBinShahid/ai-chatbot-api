@@ -341,7 +341,7 @@ async def chat(data: ChatQuery):
         send_booking_email(session["contact_info"], session["vehicle_info"], session["booking"])
 
         return {
-            "answer": f"✅ Booking confirmed for {session['vehicle_info']['make_model']} at {session['booking'].get('time')} on {session['booking'].get('address')}. We'll email confirmation to {session['contact_info'].get('email')}.",
+            "answer": f"✅ We got your information {session['vehicle_info']['make_model']} at {session['booking'].get('time')} on {session['booking'].get('address')}. We'll email confirmation to {session['contact_info'].get('email')} and one of our guy will check the schedule and give you a call soon.",
             "vehicle_info": session["vehicle_info"],
             "contact_info": session["contact_info"],
             "booking": session["booking"],
@@ -385,6 +385,7 @@ async def chat(data: ChatQuery):
         "contact_info": session.get("contact_info"),
         "booking": session.get("booking"),
         "booked": session.get("booked", False),
-        "session_id": session_id   
+        "session_id": session_id,
+           
     }
 
