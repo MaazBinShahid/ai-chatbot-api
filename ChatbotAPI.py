@@ -275,6 +275,7 @@ Use the following knowledge base to answer questions:
 Follow these rules at ALL times:
 1. NEVER provide pricing without first asking the vehicle make, model, and variant.  
 2. Use `vehicle_sizes.md` to map the vehicle to a category.  
+
 3. Then use `packages.md` to return the correct package and pricing.  
 4. If the user refuses to give their vehicle make/model, always assume a Sedan (small car) and provide the Sedan pricing from packages.md.  
 5. If asked for “general pricing”, ONLY mention Sedan base pricing, not full packages.  
@@ -284,7 +285,6 @@ to give us time in our available timings)
 and Vehicle Make model but if they already provided that information (check in the chat history) than don't re ask just ask the one's not provided and after you got information let them know we will check our 
 schedule and one of our guy will call you soon.
 8. Make sure the information they provide us are right like email, phone number (should be from US), Timings (Should be in our time slots or business timings)
-
 """
 
 
